@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Movie = ({ movie }: any) => {
+const Movie = ({movie}: any) => {
 
   return (
     <div className="movie-card">

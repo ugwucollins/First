@@ -1,12 +1,52 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+// import axios from "axios";
 import Movie from "./movie";
 
 const API_URL = "http://www.omdbapi.com/?apikey=cc702cd7";
 
+// const options = {
+//   method: "GET",
+//   url: "https://movies-api14.p.rapidapi.com/movie/27205",
+//   headers: {
+//     "X-RapidAPI-Key": "02e24f672dmshc7ccf007acdb654p12f93ajsnce5118ebc9e8",
+//     "X-RapidAPI-Host": "movies-api14.p.rapidapi.com",
+//   },
+// };
+
+const url = 'https://movies-api14.p.rapidapi.com/shows';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '02e24f672dmshc7ccf007acdb654p12f93ajsnce5118ebc9e8',
+		'X-RapidAPI-Host': 'movies-api14.p.rapidapi.com'
+	}
+};
+
+
+
+
 function App() {
   const [movies, setmovies] = useState([]);
   const [search, setsearch] = useState("");
+{   
+  // const [home, sethome] = useState();
+
+  // const moveMents = async (options: any) => {
+  //   try {
+  //     const response = await fetch(url, options);
+  //     const result = await response.text();
+  //     console.log(result);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+    
+  //   moveMents('action');
+  // }, []);
+}
 
   const movie = {
     Poster:
@@ -27,6 +67,16 @@ function App() {
   useEffect(() => {
     searchMovies("action");
   }, []);
+
+  const page = () => {
+    const names = [
+      "Please Check Your Internet",
+      "An error just occured",
+      "Poor connection",
+    ];
+    const render = Math.floor(Math.random() * 3);
+    return names[render];
+  };
 
   return (
     <div className="container">
@@ -59,13 +109,13 @@ function App() {
       {movies?.length > 0 ? (
         <div className="movie-card">
           {movies.map((movie) => (
-            <Movie movie={movie} />
+            <Movie movie={movie} key={movie} />
           ))}
           ;
         </div>
       ) : (
         <div className="empty">
-          <h2>No Movies Found</h2>
+          <h2>{page()}</h2>
         </div>
       )}
     </div>
